@@ -21,7 +21,6 @@ def create_app(test_config=None):
     @TODO: Done
     Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
     """
-    #CORS(app, resources={'/':{'origins':'*'}})
     CORS(app, origins='*')
 
 
@@ -73,14 +72,12 @@ def create_app(test_config=None):
     """
     @app.route('/questions', methods=['GET'])
     def retrieve_questions():
-        categories_dict = {}
         questions = Question.query.paginate(per_page=QUESTIONS_PER_PAGE).items
         categories = Category.query.all()
-        if len(questions)*len(categories) == 0:
+        if not (questions and categories):
             return abort(404)
         questions_list = [question.format() for question in questions]
-        for category in categories:
-            categories_dict[category.id] = category.type
+        categories_dict = {category.id:category.type for category in categories}
         return jsonify({
             'success': True,
             'questions': questions_list,
@@ -118,9 +115,7 @@ def create_app(test_config=None):
     TEST: When you submit a question on the "Add" tab,
     the form will clear and the question will appear at the end of the last page
     of the questions list in the "List" tab.
-    """
-    
-    """
+
     @TODO: Done
     Create a POST endpoint to get questions based on a search term.
     It should return any questions for whom the search term
@@ -130,7 +125,6 @@ def create_app(test_config=None):
     only question that include that string within their question.
     Try using the word "title" to start.
     """
-    
     @app.route('/questions', methods=['POST'])
     def search_or_create_questions():
         search_term = request.get_json().get('searchTerm')
@@ -147,7 +141,7 @@ def create_app(test_config=None):
                 question = request.get_json().get('question')
                 category = request.get_json().get('category')
                 difficulty = request.get_json().get('difficulty')
-                if all(variable is not None for variable in [answer, question, category, difficulty]):
+                if all(variable for variable in [answer, question, category, difficulty]):
                     Question(answer=answer, question=question, category=category, difficulty=difficulty).insert()
                     return jsonify({'success': True}), 200
             except:
@@ -175,6 +169,7 @@ def create_app(test_config=None):
             'totalQuestions': len(questions_list),
             'currentCategory': category.type
         }), 200
+
 
     """
     @TODO: Done

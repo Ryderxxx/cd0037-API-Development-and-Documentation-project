@@ -64,7 +64,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(json_data['success'])
         self.assertTrue(json_data['categories'])
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(json_data['totalQuestions'], total_questions_num)
+        self.assertEqual(json_data['total_questions'], total_questions_num)
         self.assertEqual(len(json_data['questions']), min(10, total_questions_num))
 
     def test_retrieve_questions_failure_1(self):

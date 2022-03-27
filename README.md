@@ -16,8 +16,9 @@ It contains branch of API that you can use to:
   
 4. Get a quiz question
   
+<br>
 
-## Getting Started
+## Getting Started
 
 You may follow the steps below to run Trivia locally, the default base URLs are localhost:3000 (frontend) and localhost:5000 (backend), no authentication for using API.
 
@@ -36,9 +37,10 @@ You may follow the steps below to run Trivia locally, the default base URLs are 
 7. Call 'npm start' to start the frontend server.
   
 8. OK, now you can view Trivia (localhost:3000) with your browser!
-  
+    
+<br>
 
-## Error
+## Error
 
 4 common types of HTTP errors are used in Trivia:
 
@@ -49,11 +51,12 @@ You may follow the steps below to run Trivia locally, the default base URLs are 
 3. 422 Unprocessable
   
 4. 500 Internal Server Error
-  
+    
+<br>
 
-## Resource Endpoint Library
+## Resource Endpoint Library
 
-##### GET /categories
+### GET /categories
 
 - Usage: get all available categories
   
@@ -64,9 +67,10 @@ You may follow the steps below to run Trivia locally, the default base URLs are 
   'categories': categories_dict
   
   }
-  
+    
+<br>
 
-##### GET /questions?page=<int:page_number>
+### GET /questions?page=<int:page_number>
 
 - Usage: get questions of a certain page
   
@@ -83,9 +87,10 @@ You may follow the steps below to run Trivia locally, the default base URLs are 
   'current_category': None
   
   }
-  
+    
+<br>
 
-##### DELETE /questions/<int:id>
+### DELETE /questions/<int:id>
 
 - Usage: delete a question by its id
   
@@ -97,8 +102,9 @@ You may follow the steps below to run Trivia locally, the default base URLs are 
   
   }
   
+<br>
 
-##### POST /questions
+### POST /questions
 
 - Usage: search questions by text
   
@@ -111,18 +117,20 @@ You may follow the steps below to run Trivia locally, the default base URLs are 
   'total_questions': len(search_results)
   
   }
-  
+    
+<br>
 
-##### POST /questions
+### POST /questions
 
 - Usage: post a new question
   
 - Request parameters: answer (str), question (str), category (str), difficulty (int)
   
 - Response body: None
-  
+    
+<br>
 
-##### GET /categories/<int:category_id>/questions
+### GET /categories/<int:category_id>/questions
 
 - Usage: get questions of a certain category
   
@@ -137,9 +145,10 @@ You may follow the steps below to run Trivia locally, the default base URLs are 
   'currentCategory': category.type
   
   }
-  
+    
+<br>
 
-##### POST /quizzes
+### POST /quizzes
 
 - Usage: get a new quiz question
   
